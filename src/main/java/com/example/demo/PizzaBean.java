@@ -13,16 +13,18 @@ public class PizzaBean implements InitializingBean, DisposableBean {
 	@Value("${myProperty}")
 	private String param;
 
-	@Autowired
 	private DoughBean doughBean;
 
-	PizzaBean() {
+	@Autowired
+	PizzaBean(DoughBean doughBean) {
 		System.out.println("PizzaBean Constructor - Today is pizza day" + param);
+		this.doughBean = doughBean;
 	}
 
 	@PostConstruct
 	public void postConstruct() {
 		System.out.println("PizzaBean Post Construct " + param);
+		System.out.println(doughBean.toString());
 
 	}
 
